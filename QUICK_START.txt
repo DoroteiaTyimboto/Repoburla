@@ -1,0 +1,285 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║    SISTEMA DE COMBATE A BURLAS DIGITAIS - QUICK START GUIDE                ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+🚀 COMECE AGORA EM 5 MINUTOS!
+
+Pré-requisitos: PHP 8.2+, Composer, MySQL/SQLite
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPÇÃO 1: USANDO SQLITE (Mais Rápido)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Clonar/Extrair o projeto
+   $ cd burlas-digitais
+
+2. Copiar arquivo de ambiente
+   $ cp .env.example .env
+
+3. Gerar chave da aplicação
+   $ php artisan key:generate
+
+4. Executar migrations
+   $ php artisan migrate
+
+5. Semear dados (opcional)
+   $ php artisan db:seed
+
+6. Iniciar servidor
+   $ php artisan serve
+
+7. Abrir navegador
+   → http://localhost:8000
+
+Credenciais:
+- Admin: admin@example.com / password123
+- User: user@example.com / password123
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPÇÃO 2: USANDO MYSQL
+━━━━━━━━━━━━━━━━━━━━━━
+
+1. Criar banco de dados
+   $ mysql -u root -p
+   mysql> CREATE DATABASE burlas_digitais;
+   mysql> EXIT;
+
+2. Clonar/Extrair o projeto
+   $ cd burlas-digitais
+
+3. Instalar dependências
+   $ composer install
+
+4. Copiar e configurar .env
+   $ cp .env.example .env
+   
+   Edite .env:
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_DATABASE=burlas_digitais
+   DB_USERNAME=seu_usuario
+   DB_PASSWORD=sua_senha
+
+5. Gerar chave
+   $ php artisan key:generate
+
+6. Executar migrations
+   $ php artisan migrate
+
+7. Semear dados
+   $ php artisan db:seed
+
+8. Iniciar servidor
+   $ php artisan serve
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 FUNCIONALIDADES PRINCIPAIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ AUTENTICAÇÃO
+  └─ Registro, login, perfil, controle de acesso
+
+✓ DENÚNCIAS (Reports)
+  └─ Criar, editar, moderar denúncias de fraude
+  └─ Tipos: Phishing, Malware, Fraude, etc.
+  └─ Status: Pendente, Aprovado, Rejeitado, Resolvido
+
+✓ CURSOS
+  └─ Catálogo de cursos educacionais
+  └─ Inscrição, progresso, conclusão
+  └─ Comentários e avaliações
+
+✓ TESTADOR DE LINKS
+  └─ Verificar segurança de URLs
+  └─ Detecção de padrões suspeitos
+  └─ Classificação: Seguro, Suspeito, Perigoso
+
+✓ ADMIN DASHBOARD
+  └─ Gerenciar usuários
+  └─ Gerenciar denúncias
+  └─ Gerenciar cursos e teste de links
+  └─ Enviar notificações
+  └─ Ver relatórios
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔗 ROTAS PRINCIPAIS
+━━━━━━━━━━━━━━━━━━━
+
+Público:
+  GET  /                    → Homepage
+  GET  /sobre              → Sobre
+  GET  /denuncias          → Listar denúncias
+  GET  /cursos             → Listar cursos
+  GET  /mapa               → Mapa de denúncias
+  GET  /login              → Login
+  GET  /registro           → Registrar
+
+Autenticado:
+  GET  /dashboard          → Dashboard do usuário
+  POST /denuncias          → Criar denúncia
+  GET  /denuncias/{id}     → Ver denúncia
+  POST /cursos/{id}/inscrever    → Inscrever curso
+  GET  /testador-links/testar    → Testar URL
+
+Admin:
+  GET  /admin/dashboard    → Dashboard admin
+  GET  /admin/usuarios     → Gerenciar usuários
+  GET  /admin/denuncias    → Gerenciar denúncias
+  GET  /admin/cursos       → Gerenciar cursos
+  GET  /admin/quizzes      → Gerenciar quizzes
+  GET  /admin/relatorios   → Relatórios
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛠️ COMANDOS ÚTEIS
+━━━━━━━━━━━━━━━
+
+# Executar servidor
+$ php artisan serve
+
+# Criar migration
+$ php artisan make:migration create_nome_table
+
+# Criar model
+$ php artisan make:model NomeModel
+
+# Criar controller
+$ php artisan make:controller NomeController
+
+# Limpar cache
+$ php artisan cache:clear
+$ php artisan config:clear
+$ php artisan route:clear
+$ php artisan view:clear
+
+# Modo tinker (console interativo)
+$ php artisan tinker
+
+# Listar rotas
+$ php artisan route:list
+
+# Verificar status
+$ php artisan status
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 SOLUÇÃO DE PROBLEMAS
+━━━━━━━━━━━━━━━━━━━━━━
+
+Erro: "No application key has been generated"
+→ $ php artisan key:generate
+
+Erro: "Connection refused" (MySQL)
+→ Verifique se MySQL está rodando
+→ Verifique credenciais no .env
+
+Erro: "Migrations are not up to date"
+→ $ php artisan migrate
+
+Erro: "File permissions"
+→ $ chmod -R 755 storage bootstrap/cache
+
+Erro: "SQLSTATE[HY000]"
+→ Verifique conexão com banco de dados
+→ Verifique credenciais .env
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DOCUMENTAÇÃO
+━━━━━━━━━━━━━━
+
+README.md           → Documentação completa
+INSTALLATION.md     → Guia de instalação detalhado
+PROJETO_RESUMO.md   → Resumo de funcionalidades
+QUICK_START.txt     → Este arquivo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ TECNOLOGIAS
+━━━━━━━━━━━━
+
+Backend:
+  • Laravel 11
+  • PHP 8.2+
+  • Eloquent ORM
+  • Blade Templates
+
+Frontend:
+  • Bootstrap 5
+  • HTML5 / CSS3
+  • JavaScript ES6+
+  • Bootstrap Icons
+
+Database:
+  • MySQL 8.0+ ou SQLite
+  • Migrations
+  • Eloquent Relationships
+
+Segurança:
+  • CSRF Protection
+  • bcrypt Password Hashing
+  • Input Validation
+  • XSS Prevention
+  • Role-Based Access Control
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 DICAS IMPORTANTES
+━━━━━━━━━━━━━━━━━
+
+1. PRIMEIRO ACESSO
+   → Faça login com admin@example.com
+   → Explore o admin dashboard
+   → Crie novos usuários/conteúdo
+
+2. CRIAR CONTEÚDO
+   → Admin → Cursos → Criar novo
+   → Admin → Quizzes → Criar novo
+   → Qualquer usuário pode criar denúncias
+
+3. MODERAR DENÚNCIAS
+   → Admin → Denúncias
+   → Clicar em denúncia
+   → Aprovar ou Rejeitar
+   → Marcar como Resolvido
+
+4. DADOS DE TESTE
+   → Admin: admin@example.com
+   → Moderador: moderador@example.com
+   → Usuário: user@example.com
+   → Senha: password123 (todas)
+
+5. PERSONALIZAÇÕES
+   → Edite cores em resources/views/layouts/app.blade.php
+   → Modifique textos em resources/lang/pt/
+   → Configure banco em .env
+   → Ajuste variáveis de ambiente
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 SUPORTE
+━━━━━━━━━
+
+Documentação: Veja README.md e INSTALLATION.md
+Código: Bem comentado e estruturado
+Issues: Abra issue no repositório
+Email: suporte@burlas-digitais.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 PRONTO PARA USO!
+
+O Sistema de Combate a Burlas Digitais está 100% funcional e pronto
+para ser usado em produção.
+
+Aproveite! 🚀
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Versão: 1.0.0
+Última Atualização: 2024
+Status: Produção-Ready ✓
+
