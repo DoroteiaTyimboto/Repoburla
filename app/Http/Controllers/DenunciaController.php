@@ -51,7 +51,7 @@ class DenunciaController extends Controller
             'evidencias' => $validated['evidencias'] ?? [],
             'prioridade' => $validated['prioridade'] ?? 'media',
             'localizacao' => $validated['localizacao'] ?? null,
-            'data_incidente' => $validated['data_incidente'] ?? now()->date(),
+            'data_incidente' => $validated['data_incidente'] ?? now()->toDateString(),
             'status' => 'pendente',
         ]);
 
@@ -148,6 +148,49 @@ class DenunciaController extends Controller
         ]);
 
         return back()->with('success', 'Denúncia rejeitada!');
+    }
+
+    public function reportToAuthorities(Denuncia $denuncia)
+    {
+        $user = Auth::user();
+        $canReport = $user->isModerator() || $denuncia->user_id === $user->id;
+
+        if(!$canReport) {
+            abort(403);
+        }
+
+        if($denuncia->status !== 'aprovado') {
+            return back()->with('error', 'A denúncia precisa estar aprovada para ser reportada às autoridades.');
+        }
+
+        $resultadoVerificacao = is_array($denuncia->resultado_verificacao)
+            ? $denuncia->resultado_verificacao
+            : [];
+
+        if(($resultadoVerificacao['reportado_autoridades'] ?? null) === 'Sim') {
+            return back()->with('error', 'Esta denúncia já foi reportada às autoridades.');
+        }
+
+        $resultadoVerificacao['reportado_autoridades'] = 'Sim';
+        $resultadoVerificacao['autoridade_destino'] = 'Autoridades competentes';
+        $resultadoVerificacao['reportado_por'] = $user->name;
+        $resultadoVerificacao['data_reporte_autoridade'] = now()->format('d/m/Y H:i');
+
+        $denuncia->update([
+            'resultado_verificacao' => $resultadoVerificacao,
+        ]);
+
+        return back()->with('success', 'Denúncia reportada às autoridades com sucesso!');
+    }
+
+    public function destroy(Denuncia $denuncia)
+    {
+        if(!Auth::user()->isAdmin()) {
+            abort(403);
+        }
+
+        $denuncia->delete();
+        return redirect()->route('denuncias.index')->with('success', 'Denúncia eliminada com sucesso!');
     }
 
     public function addComment(Request $request, Denuncia $denuncia)

@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
         ->name('denuncias.resolve')->middleware('can:moderate');
     Route::post('/denuncias/{denuncia}/rejeitar', [DenunciaController::class, 'reject'])
         ->name('denuncias.reject')->middleware('can:moderate');
+    Route::post('/denuncias/{denuncia}/reportar-autoridades', [DenunciaController::class, 'reportToAuthorities'])
+        ->name('denuncias.report-authorities');
+    Route::delete('/denuncias/{denuncia}', [DenunciaController::class, 'destroy'])
+        ->name('denuncias.destroy')->middleware('can:admin');
 
     // Cursos
     Route::get('/cursos', [CursoController::class, 'index'])->name('cursos.index');

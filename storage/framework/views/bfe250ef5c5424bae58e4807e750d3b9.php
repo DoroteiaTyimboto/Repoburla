@@ -88,6 +88,63 @@
         <?php endif; ?>
     </div>
 
+    <!-- Anúncios sobre Segurança da Internet -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="page-title">Dicas de Segurança na Internet</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-lock-fill text-info me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Use Senhas Fortes</h5>
+                    </div>
+                    <p class="card-text">Crie senhas com pelo menos 12 caracteres, combinando letras maiúsculas, minúsculas, números e símbolos. Evite usar informações pessoais óbvias.</p>
+                    <a href="#" class="btn btn-outline-info">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-eye-slash-fill text-warning me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Verifique Antes de Clicar</h5>
+                    </div>
+                    <p class="card-text">Sempre verifique a URL antes de clicar em links suspeitos. Use nosso testador de links para analisar endereços duvidosos.</p>
+                    <a href="<?php echo e(route('testador.index')); ?>" class="btn btn-outline-warning">Testar Link</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-shield-check-fill text-success me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Atualize seus Dispositivos</h5>
+                    </div>
+                    <p class="card-text">Mantenha seu sistema operacional, navegadores e aplicativos sempre atualizados para corrigir vulnerabilidades de segurança.</p>
+                    <a href="#" class="btn btn-outline-success">Dicas de Atualização</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card border-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-exclamation-triangle-fill text-danger me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Não Compartilhe Dados Sensíveis</h5>
+                    </div>
+                    <p class="card-text">Evite compartilhar informações pessoais, bancárias ou senhas em sites não confiáveis ou por email suspeito.</p>
+                    <a href="<?php echo e(route('denuncias.create')); ?>" class="btn btn-outline-danger">Reportar Fraude</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row mt-4">
         <div class="col-12">
             <?php echo e($cursos->links()); ?>

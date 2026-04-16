@@ -75,5 +75,55 @@
             {{ $denuncias->links() }}
         </div>
     </div>
+
+    <!-- Contatos de Apoio -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="page-title">Contatos de Apoio</h3>
+            <p class="text-muted">Em caso de emergência ou necessidade de apoio adicional, entre em contato com as autoridades competentes em Angola:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-shield-check" style="font-size: 3rem; color: #007bff;"></i>
+                    <h5 class="card-title mt-3">Polícia Nacional de Angola</h5>
+                    <p class="card-text">Para denúncias criminais e apoio policial.</p>
+                    <a href="tel:113" class="btn btn-primary">Ligar: 113</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-bank" style="font-size: 3rem; color: #28a745;"></i>
+                    <h5 class="card-title mt-3">Centro de Integridade Pública (CIP)</h5>
+                    <p class="card-text">Combate à corrupção e fraudes institucionais.</p>
+                    <a href="tel:+244222394000" class="btn btn-success">Ligar: +244 222 394 000</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-house-lock" style="font-size: 3rem; color: #ffc107;"></i>
+                    <h5 class="card-title mt-3">Centro Integrado de Segurança Pública (CISPE)</h5>
+                    <p class="card-text">Especializado em crimes cibernéticos e segurança digital.</p>
+                    <a href="tel:+244923000000" class="btn btn-warning">Ligar: +244 923 000 000</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-search" style="font-size: 3rem; color: #17a2b8;"></i>
+                    <h5 class="card-title mt-3">Serviço de Investigação Criminal (SIC)</h5>
+                    <p class="card-text">Investigação de crimes e apoio em processos criminais.</p>
+                    <a href="#" class="btn btn-info disabled" aria-disabled="true">Contacto presencial recomendado</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

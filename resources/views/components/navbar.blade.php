@@ -11,6 +11,12 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item d-flex align-items-center me-lg-2 mb-2 mb-lg-0">
+                    <button type="button" class="btn btn-sm theme-toggle" data-theme-toggle>
+                        <i class="bi bi-moon-stars-fill" data-theme-toggle-icon></i>
+                        <span class="ms-2 d-none d-md-inline" data-theme-toggle-label>Modo escuro</span>
+                    </button>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Início</a>
                 </li>

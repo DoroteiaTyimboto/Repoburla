@@ -33,6 +33,15 @@
                             <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                             <td class="text-end">
                                 <a href="{{ route('admin.usuarios.edit', $usuario) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                @if(auth()->id() !== $usuario->id)
+                                    <form action="{{ route('admin.usuarios.delete', $usuario) }}" method="POST" class="d-inline ms-1" onsubmit="return confirm('Tem certeza que deseja eliminar este usuário?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    </form>
+                                @else
+                                    <span class="badge bg-light text-dark border">Você</span>
+                                @endif
                             </td>
                         </tr>
                     @empty

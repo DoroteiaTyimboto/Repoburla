@@ -22,10 +22,10 @@
             <div class="col-md-4 mb-4">
                 <h5 class="mb-3">Redes Sociais</h5>
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-linkedin"></i></a>
-                    <a href="#" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white-50 text-decoration-none fs-5"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-md-6 text-center text-md-start text-white-50 small">
-                © 2024 Sistema de Combate a Burlas Digitais. Todos os direitos reservados.
+                © 2026 Sistema de Combate a Burlas Digitais. Todos os direitos reservados por Toroteia Tyimboto.
             </div>
             <div class="col-md-6 text-center text-md-end text-white-50 small">
                 <a href="{{ route('contato') }}" class="text-white-50 text-decoration-none">Contato</a> | 

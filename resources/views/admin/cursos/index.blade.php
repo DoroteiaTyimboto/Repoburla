@@ -33,7 +33,14 @@
                                 </span>
                             </td>
                             <td class="text-end">
-                                <a href="{{ route('admin.cursos.edit', $curso) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <div class="d-inline-flex gap-2">
+                                    <a href="{{ route('admin.cursos.edit', $curso) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                    <form action="{{ route('admin.cursos.delete', $curso) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja eliminar este curso?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty

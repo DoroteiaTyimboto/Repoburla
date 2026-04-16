@@ -185,11 +185,11 @@
                         <dd class="col-sm-6">{{ $avaliacoes->count() }}</dd>
                     </dl>
 
-                    @if(auth()->user()?->isModerator())
+                    @if(auth()->check() && (auth()->user()->isModerator() || auth()->id() === $denuncia->user_id))
                         <hr>
-                        <h6>Ações do Moderador</h6>
+                        <h6>Ações</h6>
                         <div class="d-grid gap-2">
-                            @if($denuncia->status === 'pendente')
+                            @if(auth()->user()->isModerator() && $denuncia->status === 'pendente')
                                 <form action="{{ route('denuncias.approve', $denuncia) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-success w-100">
@@ -203,12 +203,27 @@
                             @endif
 
                             @if($denuncia->status === 'aprovado')
-                                <form action="{{ route('denuncias.resolve', $denuncia) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-success w-100">
-                                        <i class="bi bi-check2-all"></i> Marcar Resolvido
-                                    </button>
-                                </form>
+                                @if((auth()->user()->isModerator() || auth()->id() === $denuncia->user_id) && ($denuncia->resultado_verificacao['reportado_autoridades'] ?? null) !== 'Sim')
+                                    <form action="{{ route('denuncias.report-authorities', $denuncia) }}" method="POST" onsubmit="return confirm('Confirmar envio desta denúncia para as autoridades?');">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-warning w-100">
+                                            <i class="bi bi-megaphone"></i> Reportar às Autoridades
+                                        </button>
+                                    </form>
+                                @else
+                                    <div class="alert alert-success mb-0 py-2 small">
+                                        <i class="bi bi-check-circle"></i> Já reportada às autoridades
+                                    </div>
+                                @endif
+
+                                @if(auth()->user()->isModerator())
+                                    <form action="{{ route('denuncias.resolve', $denuncia) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-success w-100">
+                                            <i class="bi bi-check2-all"></i> Marcar Resolvido
+                                        </button>
+                                    </form>
+                                @endif
                             @endif
                         </div>
                     @endif

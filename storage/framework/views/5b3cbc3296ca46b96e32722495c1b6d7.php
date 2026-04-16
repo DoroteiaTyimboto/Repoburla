@@ -27,7 +27,7 @@
     </div>
 
     <!-- Stats Cards -->
-    <div class="row mb-5">
+    <div class="row mb-5 justify-content-center">
         <div class="col-md-3 mb-4">
             <div class="card text-center" style="border-top: 4px solid #e74c3c;">
                 <div class="card-body">

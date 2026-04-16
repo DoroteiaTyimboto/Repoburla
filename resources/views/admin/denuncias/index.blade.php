@@ -74,6 +74,13 @@
                             <td>{{ $denuncia->created_at->format('d/m/Y') }}</td>
                             <td class="text-end">
                                 <a href="{{ route('denuncias.show', $denuncia) }}" class="btn btn-sm btn-outline-primary">Ver</a>
+                                <form action="{{ route('denuncias.destroy', $denuncia) }}" method="POST" class="d-inline ms-1" onsubmit="return confirm('Tem certeza que deseja eliminar esta denúncia?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty
