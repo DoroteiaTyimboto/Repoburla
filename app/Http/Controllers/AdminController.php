@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Denuncia;
 use App\Models\Curso;
-use App\Models\Quiz;
 use App\Models\Notificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +31,6 @@ class AdminController extends Controller
             'denunciasPendentes' => Denuncia::pendente()->count(),
             'totalCursos' => Curso::count(),
             'cursosPublicados' => Curso::published()->count(),
-            'totalQuizzes' => Quiz::count(),
-            'quizzesPublicados' => Quiz::published()->count(),
         ];
 
         $denunciasPendentes = Denuncia::pendente()->orderBy('prioridade')->limit(10)->get();
