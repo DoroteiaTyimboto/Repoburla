@@ -58,6 +58,49 @@
                         <p><strong>Data do Incidente:</strong> {{ $denuncia->data_incidente->format('d/m/Y') }}</p>
                     @endif
 
+                    @if(is_array($denuncia->evidencias) && count($denuncia->evidencias) > 0)
+                        <hr>
+                        <h5 class="mb-3">Provas Anexadas</h5>
+                        <div class="row g-3">
+                            @foreach($denuncia->evidencias as $index => $evidencia)
+                                @php
+                                    $caminho = is_array($evidencia) ? ($evidencia['caminho'] ?? null) : $evidencia;
+                                    $nome = is_array($evidencia) ? ($evidencia['nome'] ?? 'Prova ' . ($index + 1)) : 'Prova ' . ($index + 1);
+                                    $mime = is_array($evidencia) ? ($evidencia['mime'] ?? null) : null;
+                                    $isImage = is_string($mime) ? str_starts_with($mime, 'image/') : false;
+                                    $isVideo = is_string($mime) ? str_starts_with($mime, 'video/') : false;
+                                    $isAudio = is_string($mime) ? str_starts_with($mime, 'audio/') : false;
+                                @endphp
+
+                                @if($caminho)
+                                    <div class="col-md-6">
+                                        <div class="border rounded p-3 h-100">
+                                            @if($isImage)
+                                                <img src="{{ \Illuminate\Support\Facades\Storage::url($caminho) }}" alt="{{ $nome }}" class="img-fluid rounded mb-2">
+                                            @endif
+                                            @if($isVideo)
+                                                <video class="w-100 rounded mb-2" controls preload="metadata">
+                                                    <source src="{{ \Illuminate\Support\Facades\Storage::url($caminho) }}" type="{{ $mime }}">
+                                                    O seu navegador não suporta reprodução de vídeo.
+                                                </video>
+                                            @endif
+                                            @if($isAudio)
+                                                <audio class="w-100 mb-2" controls preload="metadata">
+                                                    <source src="{{ \Illuminate\Support\Facades\Storage::url($caminho) }}" type="{{ $mime }}">
+                                                    O seu navegador não suporta reprodução de áudio.
+                                                </audio>
+                                            @endif
+                                            <div class="small fw-semibold text-break">{{ $nome }}</div>
+                                            <a href="{{ \Illuminate\Support\Facades\Storage::url($caminho) }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary mt-2">
+                                                <i class="bi bi-paperclip"></i> Abrir ficheiro
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
+
                     @if($denuncia->resultado_verificacao && is_array($denuncia->resultado_verificacao) && !empty($denuncia->resultado_verificacao))
                         <hr>
                         <h5>Resultado da Verificação</h5>

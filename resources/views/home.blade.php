@@ -10,7 +10,7 @@
 @section('content')
 <div class="container py-5">
     <!-- Hero Section -->
-    <div class="row align-items-center mb-5" style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); border-radius: 12px; padding: 4rem 2rem; color: white;">
+    <div class="row align-items-center mb-5 hero-panel">
         <div class="col-lg-6">
             <h1 class="display-4 fw-bold mb-3">Proteja-se Contra Burlas Digitais</h1>
             <p class="lead mb-4">Sistema completo para identificar, reportar e combater fraudes online com educação contínua e ferramentas avançadas.</p>
@@ -31,28 +31,28 @@
     <!-- Stats Cards -->
     <div class="row mb-5 justify-content-center">
         <div class="col-md-3 mb-4">
-            <div class="card text-center" style="border-top: 4px solid #e74c3c;">
+            <div class="card text-center metric-card" data-tone="danger">
                 <div class="card-body">
                     <h5 class="card-title">Denúncias Reportadas</h5>
-                    <h2 class="fw-bold" style="color: #e74c3c;">{{ $stats['totalDenuncias'] }}</h2>
+                    <h2 class="fw-bold text-danger">{{ $stats['totalDenuncias'] }}</h2>
                     <p class="text-muted">Resolvidas: {{ $stats['denunciasResolvidas'] }}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card text-center" style="border-top: 4px solid #27ae60;">
+            <div class="card text-center metric-card" data-tone="success">
                 <div class="card-body">
                     <h5 class="card-title">Cursos Disponíveis</h5>
-                    <h2 class="fw-bold" style="color: #27ae60;">{{ $stats['cursosDisponivel'] }}</h2>
+                    <h2 class="fw-bold text-success">{{ $stats['cursosDisponivel'] }}</h2>
                     <p class="text-muted">Educação Contínua</p>
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-4">
-            <div class="card text-center" style="border-top: 4px solid #f39c12;">
+            <div class="card text-center metric-card" data-tone="warning">
                 <div class="card-body">
                     <h5 class="card-title">Links Testados</h5>
-                    <h2 class="fw-bold" style="color: #f39c12;">{{ $stats['linksTestados'] }}</h2>
+                    <h2 class="fw-bold text-warning">{{ $stats['linksTestados'] }}</h2>
                     <p class="text-muted">Verificações de Segurança</p>
                 </div>
             </div>
@@ -119,7 +119,7 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="row mt-5 mb-5" style="background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); border-radius: 12px; padding: 3rem 2rem; color: white; text-align: center;">
+    <div class="row mt-5 mb-5 cta-panel">
         <div class="col-12">
             <h2 class="mb-3">Teste Links Suspeitos</h2>
             <p class="lead mb-4">Use nosso testador de links para verificar a segurança de URLs antes de acessá-las</p>

@@ -20,9 +20,9 @@
     <!-- Stats do usuário -->
     <div class="row mb-4">
         <div class="col-md-3 mb-3">
-            <div class="card text-center" style="border-top: 4px solid #e74c3c;">
+            <div class="card text-center metric-card" data-tone="danger">
                 <div class="card-body">
-                    <i class="bi bi-exclamation-triangle" style="font-size: 2rem; color: #e74c3c;"></i>
+                    <i class="bi bi-exclamation-triangle metric-icon text-danger"></i>
                     <h6 class="mt-2">Minhas Denúncias</h6>
                     <h3 class="fw-bold">{{ $meusRelatorios['total'] }}</h3>
                     <small class="text-muted">
@@ -34,9 +34,9 @@
         </div>
 
         <div class="col-md-3 mb-3">
-            <div class="card text-center" style="border-top: 4px solid #27ae60;">
+            <div class="card text-center metric-card" data-tone="success">
                 <div class="card-body">
-                    <i class="bi bi-book" style="font-size: 2rem; color: #27ae60;"></i>
+                    <i class="bi bi-book metric-icon text-success"></i>
                     <h6 class="mt-2">Meus Cursos</h6>
                     <h3 class="fw-bold">{{ $cursosDados['total'] }}</h3>
                     <small class="text-muted">
@@ -48,9 +48,9 @@
         </div>
 
         <div class="col-md-3 mb-3">
-            <div class="card text-center" style="border-top: 4px solid #f39c12;">
+            <div class="card text-center metric-card" data-tone="warning">
                 <div class="card-body">
-                    <i class="bi bi-link" style="font-size: 2rem; color: #f39c12;"></i>
+                    <i class="bi bi-link metric-icon text-warning"></i>
                     <h6 class="mt-2">Ações Rápidas</h6>
                     <div class="mt-2">
                         <a href="{{ route('testador.index') }}" class="btn btn-sm btn-warning">Testador</a>

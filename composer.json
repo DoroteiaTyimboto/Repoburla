@@ -6,10 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.8",
         "barryvdh/laravel-dompdf": "^2.1",
-        "guzzlehttp/guzzle": "^7.8"
+        "guzzlehttp/guzzle": "^7.8",
+        "laravel/framework": "^11.0",
+        "laravel/reverb": "^1.10",
+        "laravel/tinker": "^2.8",
+        "pusher/pusher-php-server": "^7.2"
     },
     "require-dev": {
         "laravel/sail": "^1.26",
@@ -33,6 +35,15 @@
         }
     },
     "scripts": {
+        "serve": [
+            "@php artisan serve"
+        ],
+        "serve:upload": [
+            "@php -d upload_max_filesize=64M -d post_max_size=80M -d memory_limit=256M artisan serve"
+        ],
+        "reverb:start": [
+            "@php artisan reverb:start --host=127.0.0.1 --port=8080"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

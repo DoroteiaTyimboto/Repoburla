@@ -10,7 +10,7 @@
 
             <div class="card shadow-lg">
                 <div class="card-body p-4">
-                    <form action="{{ route('denuncias.update', $denuncia) }}" method="POST">
+                    <form action="{{ route('denuncias.update', $denuncia) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -68,6 +68,19 @@
                                    value="{{ old('url_suspeita', $denuncia->url_suspeita) }}">
                             @error('url_suspeita')
                                 <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Adicionar Provas (imagem, PDF, vídeo ou áudio)</label>
+                            <input type="file" name="provas[]" class="form-control @error('provas') is-invalid @enderror @error('provas.*') is-invalid @enderror"
+                                   accept=".jpg,.jpeg,.png,.webp,.pdf,.mp4,.mov,.webm,.mp3,.wav,.m4a,.ogg,.aac,image/*,application/pdf,video/*,audio/*" multiple>
+                            <small class="text-muted">Pode anexar novos prints, PDFs, vídeos e áudios (máx. 50MB por ficheiro).</small>
+                            @error('provas')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                            @error('provas.*')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
 

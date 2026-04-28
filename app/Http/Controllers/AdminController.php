@@ -132,7 +132,7 @@ class AdminController extends Controller
     public function enviarNotificacao(Request $request)
     {
         $validated = $request->validate([
-            'tipo' => 'required|in:denuncia,curso,quiz,comentario,sistema',
+            'tipo' => 'required|in:denuncia,curso,comentario,sistema',
             'titulo' => 'required|string|max:255',
             'mensagem' => 'required|string',
             'para_usuario_id' => 'nullable|exists:users,id',

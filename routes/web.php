@@ -8,6 +8,7 @@ use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\TestadorLinkController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotificacaoController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sobre', [HomeController::class, 'sobre'])->name('sobre');
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/perfil', [AuthController::class, 'profile'])->name('profile');
     Route::post('/perfil', [AuthController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/notificacoes', [NotificacaoController::class, 'index'])->name('notificacoes.index');
+    Route::get('/notificacoes/resumo', [NotificacaoController::class, 'summary'])->name('notificacoes.summary');
+    Route::post('/notificacoes/{notificacao}/lida', [NotificacaoController::class, 'markAsRead'])->name('notificacoes.read');
+    Route::post('/notificacoes/lidas/todas', [NotificacaoController::class, 'markAllAsRead'])->name('notificacoes.read-all');
 
     // Denúncias
     Route::get('/denuncias', [DenunciaController::class, 'index'])->name('denuncias.index');

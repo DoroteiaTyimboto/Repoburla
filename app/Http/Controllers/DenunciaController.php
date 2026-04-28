@@ -5,11 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Denuncia;
 use App\Models\Comentario;
 use App\Models\Avaliacao;
+use App\Models\Notificacao;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DenunciaController extends Controller
 {
+    private function notifyUser(int $userId, string $tipo, string $titulo, string $mensagem, ?string $url = null): void
+    {
+        Notificacao::create([
+            'user_id' => $userId,
+            'tipo' => $tipo,
+            'titulo' => $titulo,
+            'mensagem' => $mensagem,
+            'url' => $url,
+        ]);
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -37,10 +51,26 @@ class DenunciaController extends Controller
             'tipo' => 'required|in:phishing,malware,fraude,roubo_identidade,spam,outro',
             'url_suspeita' => 'nullable|url',
             'evidencias' => 'nullable|array',
+            'provas' => 'nullable|array',
+            'provas.*' => 'file|mimes:jpg,jpeg,png,webp,pdf,mp4,mov,webm,mp3,wav,m4a,ogg,aac|max:51200',
             'prioridade' => 'nullable|in:baixa,media,alta',
             'localizacao' => 'nullable|string|max:100',
             'data_incidente' => 'nullable|date|before_or_equal:today',
         ]);
+
+        $evidencias = $validated['evidencias'] ?? [];
+
+        if ($request->hasFile('provas')) {
+            foreach ($request->file('provas') as $prova) {
+                $path = $prova->store('denuncias/provas', 'public');
+                $evidencias[] = [
+                    'nome' => $prova->getClientOriginalName(),
+                    'caminho' => $path,
+                    'mime' => $prova->getClientMimeType(),
+                    'tamanho' => $prova->getSize(),
+                ];
+            }
+        }
 
         $denuncia = Denuncia::create([
             'user_id' => Auth::id(),
@@ -48,12 +78,23 @@ class DenunciaController extends Controller
             'descricao' => $validated['descricao'],
             'tipo' => $validated['tipo'],
             'url_suspeita' => $validated['url_suspeita'] ?? null,
-            'evidencias' => $validated['evidencias'] ?? [],
+            'evidencias' => $evidencias,
             'prioridade' => $validated['prioridade'] ?? 'media',
             'localizacao' => $validated['localizacao'] ?? null,
             'data_incidente' => $validated['data_incidente'] ?? now()->toDateString(),
             'status' => 'pendente',
         ]);
+
+        $moderadores = User::whereIn('role', ['admin', 'moderator'])->where('is_active', true)->pluck('id');
+        foreach ($moderadores as $moderadorId) {
+            $this->notifyUser(
+                (int) $moderadorId,
+                'denuncia',
+                'Nova denúncia pendente',
+                'Uma nova denúncia foi registrada e aguarda moderação.',
+                route('denuncias.show', $denuncia)
+            );
+        }
 
         return redirect()->route('denuncias.show', $denuncia)->with('success', 'Denúncia registrada com sucesso!');
     }
@@ -96,9 +137,27 @@ class DenunciaController extends Controller
             'descricao' => 'required|string|min:20',
             'tipo' => 'required|in:phishing,malware,fraude,roubo_identidade,spam,outro',
             'url_suspeita' => 'nullable|url',
+            'provas' => 'nullable|array',
+            'provas.*' => 'file|mimes:jpg,jpeg,png,webp,pdf,mp4,mov,webm,mp3,wav,m4a,ogg,aac|max:51200',
             'prioridade' => 'nullable|in:baixa,media,alta',
             'localizacao' => 'nullable|string|max:100',
         ]);
+
+        $evidencias = is_array($denuncia->evidencias) ? $denuncia->evidencias : [];
+
+        if ($request->hasFile('provas')) {
+            foreach ($request->file('provas') as $prova) {
+                $path = $prova->store('denuncias/provas', 'public');
+                $evidencias[] = [
+                    'nome' => $prova->getClientOriginalName(),
+                    'caminho' => $path,
+                    'mime' => $prova->getClientMimeType(),
+                    'tamanho' => $prova->getSize(),
+                ];
+            }
+        }
+
+        $validated['evidencias'] = $evidencias;
 
         $denuncia->update($validated);
         return redirect()->route('denuncias.show', $denuncia)->with('success', 'Denúncia atualizada com sucesso!');
@@ -115,6 +174,14 @@ class DenunciaController extends Controller
             'data_verificacao' => now(),
         ]);
 
+        $this->notifyUser(
+            $denuncia->user_id,
+            'denuncia',
+            'Denúncia aprovada',
+            'Sua denúncia "'.$denuncia->titulo.'" foi aprovada.',
+            route('denuncias.show', $denuncia)
+        );
+
         return back()->with('success', 'Denúncia aprovada!');
     }
 
@@ -125,6 +192,14 @@ class DenunciaController extends Controller
         }
 
         $denuncia->markAsResolved();
+
+        $this->notifyUser(
+            $denuncia->user_id,
+            'denuncia',
+            'Denúncia resolvida',
+            'Sua denúncia "'.$denuncia->titulo.'" foi marcada como resolvida.',
+            route('denuncias.show', $denuncia)
+        );
         return back()->with('success', 'Denúncia marcada como resolvida!');
     }
 
@@ -146,6 +221,14 @@ class DenunciaController extends Controller
                 'data_rejeicao' => now(),
             ],
         ]);
+
+        $this->notifyUser(
+            $denuncia->user_id,
+            'denuncia',
+            'Denúncia rejeitada',
+            'Sua denúncia "'.$denuncia->titulo.'" foi rejeitada. Verifique o motivo informado.',
+            route('denuncias.show', $denuncia)
+        );
 
         return back()->with('success', 'Denúncia rejeitada!');
     }
@@ -180,6 +263,14 @@ class DenunciaController extends Controller
             'resultado_verificacao' => $resultadoVerificacao,
         ]);
 
+        $this->notifyUser(
+            $denuncia->user_id,
+            'denuncia',
+            'Denúncia reportada às autoridades',
+            'Sua denúncia "'.$denuncia->titulo.'" foi reportada às autoridades.',
+            route('denuncias.show', $denuncia)
+        );
+
         return back()->with('success', 'Denúncia reportada às autoridades com sucesso!');
     }
 
@@ -187,6 +278,14 @@ class DenunciaController extends Controller
     {
         if(!Auth::user()->isAdmin()) {
             abort(403);
+        }
+
+        if (is_array($denuncia->evidencias)) {
+            foreach ($denuncia->evidencias as $evidencia) {
+                if (is_array($evidencia) && !empty($evidencia['caminho'])) {
+                    Storage::disk('public')->delete($evidencia['caminho']);
+                }
+            }
         }
 
         $denuncia->delete();
@@ -204,6 +303,16 @@ class DenunciaController extends Controller
             'denuncia_id' => $denuncia->id,
             'conteudo' => $validated['conteudo'],
         ]);
+
+        if (Auth::id() !== $denuncia->user_id) {
+            $this->notifyUser(
+                $denuncia->user_id,
+                'comentario',
+                'Novo comentário na sua denúncia',
+                Auth::user()->name.' comentou na denúncia "'.$denuncia->titulo.'".',
+                route('denuncias.show', $denuncia)
+            );
+        }
 
         return back()->with('success', 'Comentário adicionado!');
     }
