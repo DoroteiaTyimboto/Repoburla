@@ -3,7 +3,7 @@
         <div class="row mb-4">
             <div class="col-md-4 mb-4">
                 <h5 class="mb-3">
-                    <i class="bi bi-shield-check"></i> Burlas Digitais
+                    <i class="bi bi-shield-check"></i> Ondyove
                 </h5>
                 <p>Sistema completo para combater fraudes e burlas digitais com educação e segurança.</p>
             </div>
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="col-md-6 text-center text-md-start text-white-50 small">
-                © 2026 Sistema de Combate a Burlas Digitais. Todos os direitos reservados por Toroteia Tyimboto.
+                © 2026 Sistema de Combate a Burlas Digitais. Todos os direitos reservados por Doroteia Tyimboto.
             </div>
             <div class="col-md-6 text-center text-md-end text-white-50 small">
                 <a href="<?php echo e(route('contato')); ?>" class="text-white-50 text-decoration-none">Contato</a> | 

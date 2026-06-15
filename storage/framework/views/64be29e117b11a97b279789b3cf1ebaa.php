@@ -63,8 +63,11 @@
                         <hr>
                         <h5>Conteúdo</h5>
                         <div class="alert alert-light">
-                            <?php echo nl2br(e($curso->conteudo)); ?>
-
+                            <?php
+                                $conteudo = e($curso->conteudo);
+                                $conteudo = preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $conteudo);
+                                echo nl2br($conteudo);
+                            ?>
                         </div>
                     <?php endif; ?>
                 </div>

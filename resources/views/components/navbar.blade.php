@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <i class="bi bi-shield-check"></i>
-            <span>Burlas Digitais</span>
+            <span>Ondyove</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

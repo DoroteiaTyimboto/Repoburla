@@ -39,15 +39,15 @@ class AppServiceProvider extends ServiceProvider
             $entity = strtolower(class_basename($modelClass));
 
             $modelClass::created(function ($model) use ($entity) {
-                event(new SystemUpdated($entity, 'created', $model->getKey()));
+                rescue(fn () => event(new SystemUpdated($entity, 'created', $model->getKey())));
             });
 
             $modelClass::updated(function ($model) use ($entity) {
-                event(new SystemUpdated($entity, 'updated', $model->getKey()));
+                rescue(fn () => event(new SystemUpdated($entity, 'updated', $model->getKey())));
             });
 
             $modelClass::deleted(function ($model) use ($entity) {
-                event(new SystemUpdated($entity, 'deleted', $model->getKey()));
+                rescue(fn () => event(new SystemUpdated($entity, 'deleted', $model->getKey())));
             });
         }
     }

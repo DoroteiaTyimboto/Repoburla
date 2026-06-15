@@ -39,13 +39,9 @@
         <?php $__empty_1 = true; $__currentLoopData = $cursos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $curso): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <?php if($curso->imagem_capa): ?>
-                        <img src="<?php echo e($curso->imagem_capa); ?>" class="card-img-top" alt="<?php echo e($curso->titulo); ?>" style="height: 200px; object-fit: cover;">
-                    <?php else: ?>
-                        <div style="height: 200px; background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="bi bi-book" style="font-size: 3rem;"></i>
-                        </div>
-                    <?php endif; ?>
+                    <div style="height: 200px; background: linear-gradient(135deg, #6c757d 0%, #343a40 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="bi bi-shield-lock" style="font-size: 3rem;"></i>
+                    </div>
 
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"><?php echo e($curso->titulo); ?></h5>

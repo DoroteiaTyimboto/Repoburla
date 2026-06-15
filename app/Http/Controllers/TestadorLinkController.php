@@ -43,6 +43,14 @@ class TestadorLinkController extends Controller
 
         $url = $validated['url'];
 
+        // Validar se a URL é segura para o servidor acessar (Prevenção SSRF)
+        if (!$this->isUrlSeguraParaServidor($url)) {
+            return response()->json([
+                'error' => 'URL não permitida por razões de segurança.',
+                'risco' => 'perigoso'
+            ], 403);
+        }
+
         // Verificar se já existe teste recente
         $recenteTest = TestadorLink::where('url_testada', $url)
             ->where('user_id', Auth::id())
@@ -77,6 +85,38 @@ class TestadorLinkController extends Controller
         }
 
         return view('testador.show', ['testador' => $testador]);
+    }
+
+    private function isUrlSeguraParaServidor($url): bool
+    {
+        $host = parse_url($url, PHP_URL_HOST);
+        if (!$host) return false;
+
+        $ip = gethostbyname($host);
+        if (!$ip || $ip === $host) {
+            // Se não resolveu IP ou retornou o próprio host (pode ser inválido)
+            // mas vamos filtrar por precaução se for IP literal
+            $ip = $host;
+        }
+
+        // Bloquear IPs privados e reservados
+        $private_patterns = [
+            '/^127\./',
+            '/^10\./',
+            '/^172\.(1[6-9]|2[0-9]|3[0-1])\./',
+            '/^192\.168\./',
+            '/^169\.254\./',
+            '/^0\./',
+            '/^localhost$/i'
+        ];
+
+        foreach ($private_patterns as $pattern) {
+            if (preg_match($pattern, $ip)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private function verificarUrl($url): array

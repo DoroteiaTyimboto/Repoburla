@@ -24,7 +24,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/denuncias/{denuncia}', [DenunciaController::class, 'update']);
     Route::post('/denuncias/{denuncia}/comentario', [DenunciaController::class, 'addComment']);
     Route::post('/denuncias/{denuncia}/avaliar', [DenunciaController::class, 'rate']);
-    Route::get('/meu-relatorios', [DenunciaController::class, 'myReports']);
+    Route::get('/minhas-denuncias', [DenunciaController::class, 'myReports']);
 
     // Cursos
     Route::post('/cursos/{curso}/inscrever', [CursoController::class, 'enroll']);

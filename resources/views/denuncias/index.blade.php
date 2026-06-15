@@ -110,7 +110,7 @@
                     <i class="bi bi-house-lock" style="font-size: 3rem; color: #ffc107;"></i>
                     <h5 class="card-title mt-3">Centro Integrado de Segurança Pública (CISPE)</h5>
                     <p class="card-text">Especializado em crimes cibernéticos e segurança digital.</p>
-                    <a href="tel:+244923000000" class="btn btn-warning">Ligar: +244 923 000 000</a>
+                    <a href="tel:+244923458671" class="btn btn-warning">Ligar: +244 923 458 671</a>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
                     <i class="bi bi-search" style="font-size: 3rem; color: #17a2b8;"></i>
                     <h5 class="card-title mt-3">Serviço de Investigação Criminal (SIC)</h5>
                     <p class="card-text">Investigação de crimes e apoio em processos criminais.</p>
-                    <a href="#" class="btn btn-info disabled" aria-disabled="true">Contacto presencial recomendado</a>
+                    <a href="tel:+244944773298" class="btn btn-warning">Ligar: +244 944 773 298</a>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
     <div class="row align-items-center mb-5 hero-panel">
         <div class="col-lg-6">
             <h1 class="display-4 fw-bold mb-3">Proteja-se Contra Burlas Digitais</h1>
-            <p class="lead mb-4">Sistema completo para identificar, reportar e combater fraudes online com educação contínua e ferramentas avançadas.</p>
+            <p class="lead mb-4">Bem-vindo a Ondyove. Assim como a águia 🦅 vigia o horizonte a partir do topo,o nosso sistema monitoriza e protege os teus passos no ecossistema digital Angolano.as burlas evoluem todos os dias através de mensagens falsas, promessas fáceis,e chamadas enganosas, mais a tua segurança voa mais alto.</p>
             <div class="d-flex gap-3">
                 <a href="<?php echo e(route('denuncias.index')); ?>" class="btn btn-light btn-lg">
                     <i class="bi bi-flag"></i> Ver Denúncias
