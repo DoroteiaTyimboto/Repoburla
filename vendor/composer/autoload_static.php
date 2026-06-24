@@ -614,6 +614,7 @@ class ComposerStaticInit58d65c2234172a6354e04e541100148a
     );
 
     public static $classMap = array (
+        'App\\Events\\SystemUpdated' => __DIR__ . '/../..' . '/app/Events/SystemUpdated.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -621,7 +622,7 @@ class ComposerStaticInit58d65c2234172a6354e04e541100148a
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\DenunciaController' => __DIR__ . '/../..' . '/app/Http/Controllers/DenunciaController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\RealtimeController' => __DIR__ . '/../..' . '/app/Http/Controllers/RealtimeController.php',
+        'App\\Http\\Controllers\\NotificacaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificacaoController.php',
         'App\\Http\\Controllers\\TestadorLinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestadorLinkController.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',

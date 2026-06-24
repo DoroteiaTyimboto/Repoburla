@@ -5,6 +5,12 @@
 @section('admin-content')
 <h1 class="page-title">Relatórios</h1>
 
+<div class="text-end mb-4">
+    <a href="{{ route('admin.relatorios.pdf') }}" class="btn btn-primary">
+        <i class="bi bi-download"></i> Baixar Relatório (PDF)
+    </a>
+</div>
+
 <div class="row">
     <div class="col-md-6 mb-4">
         <div class="card">

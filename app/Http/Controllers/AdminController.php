@@ -120,6 +120,22 @@ class AdminController extends Controller
         return view('admin.relatorios', ['relatorios' => $relatorios]);
     }
 
+    public function relatoriosPdf()
+    {
+        $relatorios = [
+            'denunciasPorTipo' => Denuncia::select('tipo')->get()->groupBy('tipo')->map->count(),
+            'denunciasPorStatus' => Denuncia::select('status')->get()->groupBy('status')->map->count(),
+            'cursosPopulares' => Curso::withCount('usuarios')->orderByDesc('usuarios_count')->limit(5)->get(),
+            'usuariosAtivos' => User::where('is_active', true)->count(),
+            'totalDenuncias' => Denuncia::count(),
+            'totalUsuarios' => User::count(),
+            'totalCursos' => Curso::count(),
+        ];
+
+        $pdf = \PDF::loadView('admin.relatorios-pdf', ['relatorios' => $relatorios]);
+        return $pdf->download('relatorio-ondyove-'.now()->format('Y-m-d').'.pdf');
+    }
+
     public function notificacoes()
     {
         $notificacoes = Notificacao::orderBy('created_at', 'desc')->paginate(20);

@@ -92,6 +92,7 @@ Route::middleware(['auth', 'can:moderate'])->prefix('admin')->name('admin.')->gr
     Route::delete('/cursos/{curso}', [CursoController::class, 'adminDestroy'])->name('cursos.delete');
 
     Route::get('/relatorios', [AdminController::class, 'relatorios'])->name('relatorios');
+    Route::get('/relatorios/pdf', [AdminController::class, 'relatoriosPdf'])->name('relatorios.pdf');
     Route::get('/notificacoes', [AdminController::class, 'notificacoes'])->name('notificacoes');
     Route::post('/notificacoes/enviar', [AdminController::class, 'enviarNotificacao'])->name('notificacoes.send');
     Route::get('/configuracoes', [AdminController::class, 'configuracoes'])->name('configuracoes');

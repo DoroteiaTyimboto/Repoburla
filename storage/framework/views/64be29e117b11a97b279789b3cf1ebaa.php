@@ -7,13 +7,9 @@
             <h1 class="page-title"><?php echo e($curso->titulo); ?></h1>
 
             <div class="card mb-4">
-                <?php if($curso->imagem_capa): ?>
-                    <img src="<?php echo e($curso->imagem_capa); ?>" class="card-img-top" alt="<?php echo e($curso->titulo); ?>" style="height: 300px; object-fit: cover;">
-                <?php else: ?>
-                    <div style="height: 300px; background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="bi bi-book" style="font-size: 5rem;"></i>
-                    </div>
-                <?php endif; ?>
+                <div style="height: 300px; background: linear-gradient(135deg, #6c757d 0%, #343a40 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                    <i class="bi bi-shield-lock" style="font-size: 5rem;"></i>
+                </div>
 
                 <div class="card-body">
                     <h5 class="card-title">Sobre o Curso</h5>

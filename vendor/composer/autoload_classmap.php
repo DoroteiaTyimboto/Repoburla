@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Events\\SystemUpdated' => $baseDir . '/app/Events/SystemUpdated.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
@@ -13,7 +14,7 @@ return array(
     'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
     'App\\Http\\Controllers\\DenunciaController' => $baseDir . '/app/Http/Controllers/DenunciaController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
-    'App\\Http\\Controllers\\RealtimeController' => $baseDir . '/app/Http/Controllers/RealtimeController.php',
+    'App\\Http\\Controllers\\NotificacaoController' => $baseDir . '/app/Http/Controllers/NotificacaoController.php',
     'App\\Http\\Controllers\\TestadorLinkController' => $baseDir . '/app/Http/Controllers/TestadorLinkController.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',

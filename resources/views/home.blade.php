@@ -12,8 +12,15 @@
     <!-- Hero Section -->
     <div class="row align-items-center mb-5 hero-panel">
         <div class="col-lg-6">
-            <h1 class="display-4 fw-bold mb-3">Proteja-se Contra Burlas Digitais</h1>
-            <p class="lead mb-4">Bem-vindo a Ondyove. Assim como a águia 🦅 vigia o horizonte a partir do topo,o nosso sistema monitoriza e protege os teus passos no ecossistema digital Angolano.as burlas evoluem todos os dias através de mensagens falsas, promessas fáceis,e chamadas enganosas, mais a tua segurança voa mais alto.</p>
+            <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeIn">Proteção Inteligente Contra Fraudes Digitais</h1>
+            <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-1s">O Ondyove é a sua solução completa para segurança digital em Angola. Utilizando tecnologia avançada e inteligência coletiva, oferecemos:</p>
+            <ul class="lead mb-4 animate__animated animate__fadeIn animate__delay-2s">
+                <li class="animate__animated animate__fadeInLeft animate__delay-3s">Verificação em tempo real de links suspeitos</li>
+                <li class="animate__animated animate__fadeInLeft animate__delay-4s">Educação contínua através de cursos especializados</li>
+                <li class="animate__animated animate__fadeInLeft animate__delay-5s">Sistema colaborativo de denúncias de fraudes</li>
+                <li class="animate__animated animate__fadeInLeft animate__delay-6s">Alertas proativos sobre novas ameaças</li>
+            </ul>
+            <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-7s">Juntos, construímos um ambiente digital mais seguro para todos.</p>
             <div class="d-flex gap-3">
                 <a href="{{ route('denuncias.index') }}" class="btn btn-light btn-lg">
                     <i class="bi bi-flag"></i> Ver Denúncias

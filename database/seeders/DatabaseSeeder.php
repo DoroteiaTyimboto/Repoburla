@@ -14,38 +14,28 @@ class DatabaseSeeder extends Seeder
     {
         // Criar usuários de teste
         User::updateOrCreate(
-            ['email' => 'admin@example.com'],
+            ['email' => 'doroteia@admin.com'],
             [
                 'name' => 'Admin User',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('Doroteia123!'),
                 'role' => 'admin',
                 'is_active' => true,
-                'phone' => '+55 11 99999-9999',
-                'country' => 'Brasil',
+                'phone' => '947747301',
+                'country' => 'Angola',
             ]
         );
 
-        User::updateOrCreate(
-            ['email' => 'moderador@example.com'],
-            [
-                'name' => 'Moderador',
-                'password' => Hash::make('password123'),
-                'role' => 'moderator',
-                'is_active' => true,
-                'phone' => '+55 11 99999-8888',
-                'country' => 'Brasil',
-            ]
-        );
+       
 
         User::updateOrCreate(
-            ['email' => 'user@example.com'],
+            ['email' => 'carla@user.com'],
             [
-                'name' => 'Usuário Teste',
-                'password' => Hash::make('password123'),
+                'name' => 'Carla Silva',
+                'password' => Hash::make('123'),
                 'role' => 'user',
                 'is_active' => true,
-                'phone' => '+55 11 99999-7777',
-                'country' => 'Brasil',
+                'phone' => '937477390',
+                'country' => 'Angola',
             ]
         );
 
