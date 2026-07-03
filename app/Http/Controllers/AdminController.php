@@ -111,8 +111,8 @@ class AdminController extends Controller
     public function relatorios()
     {
         $relatorios = [
-            'denunciasPorTipo' => Denuncia::select('tipo')->get()->groupBy('tipo')->map->count(),
-            'denunciasPorStatus' => Denuncia::select('status')->get()->groupBy('status')->map->count(),
+            'denunciasPorTipo' => Denuncia::selectRaw('tipo, count(*) as total')->groupBy('tipo')->pluck('total', 'tipo'),
+            'denunciasPorStatus' => Denuncia::selectRaw('status, count(*) as total')->groupBy('status')->pluck('total', 'status'),
             'cursosPopulares' => Curso::withCount('usuarios')->orderByDesc('usuarios_count')->limit(5)->get(),
             'usuariosAtivos' => User::where('is_active', true)->count(),
         ];
@@ -123,8 +123,8 @@ class AdminController extends Controller
     public function relatoriosPdf()
     {
         $relatorios = [
-            'denunciasPorTipo' => Denuncia::select('tipo')->get()->groupBy('tipo')->map->count(),
-            'denunciasPorStatus' => Denuncia::select('status')->get()->groupBy('status')->map->count(),
+            'denunciasPorTipo' => Denuncia::selectRaw('tipo, count(*) as total')->groupBy('tipo')->pluck('total', 'tipo'),
+            'denunciasPorStatus' => Denuncia::selectRaw('status, count(*) as total')->groupBy('status')->pluck('total', 'status'),
             'cursosPopulares' => Curso::withCount('usuarios')->orderByDesc('usuarios_count')->limit(5)->get(),
             'usuariosAtivos' => User::where('is_active', true)->count(),
             'totalDenuncias' => Denuncia::count(),
@@ -181,3 +181,4 @@ class AdminController extends Controller
         return view('admin.configuracoes');
     }
 }
+
