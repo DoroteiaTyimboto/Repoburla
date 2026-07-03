@@ -54,6 +54,7 @@
                         <div class="mb-3">
                             <label class="form-label">Senha</label>
                             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
+                            <small class="text-muted">Use pelo menos 6 caracteres com 1 letra maiúscula, 1 número e 1 caractere especial.</small>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

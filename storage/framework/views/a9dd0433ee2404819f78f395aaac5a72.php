@@ -9,12 +9,12 @@
             <?php echo csrf_field(); ?>
             <div class="mb-3">
                 <label class="form-label">Nome do Sistema</label>
-                <input type="text" name="site_name" class="form-control" value="Ondyove">
+                <input type="text" name="site_name" class="form-control" value="RepoBurla">
             </div>
             
             <div class="mb-3">
                 <label class="form-label">E-mail de Contato</label>
-                <input type="email" name="contact_email" class="form-control" value="contato@ondyove.com">
+                <input type="email" name="contact_email" class="form-control" value="contato@repoburla.com">
             </div>
 
             <div class="mb-3">

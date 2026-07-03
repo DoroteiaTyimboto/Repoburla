@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -22,7 +21,7 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|string',
         ]);
 
         if(Auth::attempt($validated)) {
@@ -48,7 +47,7 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
+            'password' => $this->strongPasswordRules(),
             'phone' => 'nullable|string|max:20',
             'country' => 'nullable|string|max:100',
         ]);
@@ -56,7 +55,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'password' => bcrypt($validated['password']),
             'phone' => $validated['phone'] ?? null,
             'country' => $validated['country'] ?? null,
             'role' => 'user',
@@ -88,15 +87,16 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
             'country' => 'nullable|string|max:100',
-            'current_password' => 'nullable|required_with:new_password',
-            'new_password' => 'nullable|min:8|confirmed',
+            'current_password' => 'nullable|required_with:new_password|current_password',
+            'new_password' => [
+                'nullable',
+                'different:current_password',
+                ...$this->strongPasswordRules(false),
+            ],
         ]);
 
-        if($request->filled('current_password')) {
-            if(!Hash::check($request->current_password, $user->password)) {
-                return back()->withErrors(['current_password' => 'Senha atual inválida.']);
-            }
-            $user->password = Hash::make($request->new_password);
+        if($request->filled('new_password')) {
+            $user->password = bcrypt($request->new_password);
         }
 
         $user->update([
@@ -106,5 +106,56 @@ class AuthController extends Controller
         ]);
 
         return back()->with('success', 'Perfil atualizado com sucesso!');
+    }
+
+    private function strongPasswordRules(bool $required = true): array
+    {
+        $rules = [
+            'string',
+            'min:6',
+            'confirmed',
+            function (string $attribute, mixed $value, Closure $fail): void {
+                $passwordRaw = (string) $value;
+                $password = strtolower($passwordRaw);
+
+                if (!preg_match('/[A-Z]/', $passwordRaw)) {
+                    $fail('A senha deve conter pelo menos 1 letra maiúscula.');
+                    return;
+                }
+
+                if (!preg_match('/\d/', $passwordRaw)) {
+                    $fail('A senha deve conter pelo menos 1 número.');
+                    return;
+                }
+
+                if (!preg_match('/[^a-zA-Z0-9]/', $passwordRaw)) {
+                    $fail('A senha deve conter pelo menos 1 caractere especial.');
+                    return;
+                }
+
+                $weakWords = ['123456', '12345678', 'qwerty', 'password', 'admin', 'senha'];
+                foreach ($weakWords as $word) {
+                    if ($password === $word) {
+                        $fail('A senha contém um padrão fraco ou previsível.');
+                        return;
+                    }
+                }
+
+                if (preg_match('/^(.)\\1+$/', $password)) {
+                    $fail('A senha não pode ser composta por um único caractere repetido.');
+                    return;
+                }
+
+                if (preg_match('/^\d+$/', $password)) {
+                    $fail('A senha não pode conter apenas números.');
+                }
+            },
+        ];
+
+        if ($required) {
+            array_unshift($rules, 'required');
+        }
+
+        return $rules;
     }
 }

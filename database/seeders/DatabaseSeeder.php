@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Curso;
 use App\Models\Denuncia;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +16,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'doroteia@admin.com'],
             [
                 'name' => 'Admin User',
-                'password' => Hash::make('Doroteia123!'),
+                'password' => bcrypt('Doroteia123!'),
                 'role' => 'admin',
                 'is_active' => true,
                 'phone' => '947747301',
@@ -31,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'carla@user.com'],
             [
                 'name' => 'Carla Silva',
-                'password' => Hash::make('123'),
+                'password' => bcrypt('Carla@2026!Seguro'),
                 'role' => 'user',
                 'is_active' => true,
                 'phone' => '937477390',

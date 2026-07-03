@@ -327,6 +327,6 @@ class TestadorLinkController extends Controller
         }
 
         $testador->delete();
-        return back()->with('success', 'Teste deletado com sucesso!');
+        return redirect()->route('testador.index')->with('success', 'Teste deletado com sucesso!');
     }
 }

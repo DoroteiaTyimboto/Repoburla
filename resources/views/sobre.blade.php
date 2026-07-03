@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Sobre - Sistema de Combate a Burlas Digitais')
+@section('title', 'Sobre - RepoBurla')
 
 @section('content')
 <div class="container py-4">
@@ -12,7 +12,7 @@
                 <div class="card-body p-4">
                     <h4 class="mb-3">Missão</h4>
                     <p class="text-muted">
-                        O Sistema de Combate a Burlas Digitais foi desenvolvido para apoiar a prevenção, identificação
+                        O RepoBurla foi desenvolvido para apoiar a prevenção, identificação
                         e denúncia de fraudes online, promovendo uma cultura de segurança digital e resposta rápida.
                     </p>
 

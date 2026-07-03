@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="<?php echo e(route('home')); ?>">
             <i class="bi bi-shield-check"></i>
-            <span>Ondyove</span>
+            <span>RepoBurla</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

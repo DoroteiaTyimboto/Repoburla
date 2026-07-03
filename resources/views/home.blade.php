@@ -5,7 +5,7 @@
     use Illuminate\Support\Facades\Auth;
 @endphp
 
-@section('title', 'Início - Sistema de Combate a Burlas Digitais')
+@section('title', 'Início - RepoBurla')
 
 @section('content')
 <div class="container py-5">
@@ -13,7 +13,7 @@
     <div class="row align-items-center mb-5 hero-panel">
         <div class="col-lg-6">
             <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeIn">Proteção Inteligente Contra Fraudes Digitais</h1>
-            <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-1s">O Ondyove é a sua solução completa para segurança digital em Angola. Utilizando tecnologia avançada e inteligência coletiva, oferecemos:</p>
+            <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-1s">O RepoBurla é a sua solução completa para segurança digital em Angola. Utilizando tecnologia avançada e inteligência coletiva, oferecemos:</p>
             <ul class="lead mb-4 animate__animated animate__fadeIn animate__delay-2s">
                 <li class="animate__animated animate__fadeInLeft animate__delay-3s">Verificação em tempo real de links suspeitos</li>
                 <li class="animate__animated animate__fadeInLeft animate__delay-4s">Educação contínua através de cursos especializados</li>

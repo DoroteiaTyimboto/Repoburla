@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contacto - Sistema de Combate a Burlas Digitais')
+@section('title', 'Contacto - RepoBurla')
 
 @section('content')
 <div class="container py-4">
@@ -26,7 +26,7 @@
                         <div class="col-md-6">
                             <div class="border rounded p-3 h-100">
                                 <div class="fw-bold mb-2"><i class="bi bi-telephone-fill me-2"></i>Telefone</div>
-                                <div class="text-muted">+244 900 000 000</div>
+                                <div class="text-muted">926 659 670 (CISP)</div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -58,7 +58,7 @@
                         <a href="mailto:suporte@burlasdigitais.ao" class="btn btn-primary">
                             <i class="bi bi-envelope me-2"></i>Enviar Email
                         </a>
-                        <a href="tel:+244900000000" class="btn btn-outline-primary">
+                        <a href="tel:926659670" class="btn btn-outline-primary">
                             <i class="bi bi-telephone me-2"></i>Ligar Agora
                         </a>
                         <a href="{{ route('mapa') }}" class="btn btn-outline-secondary">

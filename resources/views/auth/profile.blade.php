@@ -130,6 +130,7 @@
                                     name="new_password"
                                     class="form-control @error('new_password') is-invalid @enderror"
                                 >
+                                <small class="text-muted">Mínimo de 6 caracteres com 1 letra maiúscula, 1 número e 1 caractere especial.</small>
                                 @error('new_password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

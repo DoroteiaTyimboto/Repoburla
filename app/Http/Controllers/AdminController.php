@@ -133,7 +133,7 @@ class AdminController extends Controller
         ];
 
         $pdf = \PDF::loadView('admin.relatorios-pdf', ['relatorios' => $relatorios]);
-        return $pdf->download('relatorio-ondyove-'.now()->format('Y-m-d').'.pdf');
+        return $pdf->download('relatorio-repoburla-'.now()->format('Y-m-d').'.pdf');
     }
 
     public function notificacoes()

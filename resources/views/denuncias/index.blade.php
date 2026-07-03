@@ -98,9 +98,9 @@
             <div class="card text-center h-100">
                 <div class="card-body">
                     <i class="bi bi-bank" style="font-size: 3rem; color: #28a745;"></i>
-                    <h5 class="card-title mt-3">Centro de Integridade Pública (CIP)</h5>
-                    <p class="card-text">Combate à corrupção e fraudes institucionais.</p>
-                    <a href="tel:+244222394000" class="btn btn-success">Ligar: +244 222 394 000</a>
+                    <h5 class="card-title mt-3">Serviço de Investigação Criminal (SIC) - Lubango</h5>
+                    <p class="card-text">Atendimento do SIC na região do Lubango.</p>
+                    <a href="tel:926261605" class="btn btn-success">Ligar: 926 261 605</a>
                 </div>
             </div>
         </div>
@@ -108,9 +108,9 @@
             <div class="card text-center h-100">
                 <div class="card-body">
                     <i class="bi bi-house-lock" style="font-size: 3rem; color: #ffc107;"></i>
-                    <h5 class="card-title mt-3">Centro Integrado de Segurança Pública (CISPE)</h5>
-                    <p class="card-text">Especializado em crimes cibernéticos e segurança digital.</p>
-                    <a href="tel:+244923458671" class="btn btn-warning">Ligar: +244 923 458 671</a>
+                    <h5 class="card-title mt-3">Serviço de Investigação Criminal (SIC) - Humpata</h5>
+                    <p class="card-text">Atendimento do SIC na região da Humpata.</p>
+                    <a href="tel:923782152" class="btn btn-warning">Ligar: 923 782 152</a>
                 </div>
             </div>
         </div>
@@ -118,9 +118,9 @@
             <div class="card text-center h-100">
                 <div class="card-body">
                     <i class="bi bi-search" style="font-size: 3rem; color: #17a2b8;"></i>
-                    <h5 class="card-title mt-3">Serviço de Investigação Criminal (SIC)</h5>
-                    <p class="card-text">Investigação de crimes e apoio em processos criminais.</p>
-                    <a href="tel:+244944773298" class="btn btn-warning">Ligar: +244 944 773 298</a>
+                    <h5 class="card-title mt-3">Centro Integrado de Segurança Pública (CISP)</h5>
+                    <p class="card-text">Atendimento integrado para segurança pública.</p>
+                    <a href="tel:926659670" class="btn btn-warning">Ligar: 926 659 670</a>
                 </div>
             </div>
         </div>

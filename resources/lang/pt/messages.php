@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'welcome' => 'Bem-vindo ao Sistema de Combate a Burlas Digitais',
+    'welcome' => 'Bem-vindo ao RepoBurla',
     'denuncias' => 'Denúncias',
     'cursos' => 'Cursos',
     'quizzes' => 'Quizzes',
