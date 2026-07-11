@@ -102,35 +102,6 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // Criar denúncias de exemplo
-        $user = User::where('role', 'user')->first();
-        if($user) {
-            Denuncia::updateOrCreate(
-                ['titulo' => 'Phishing de conta bancária detectado'],
-                [
-                    'user_id' => $user->id,
-                    'descricao' => 'Recebi um email aparentemente do banco solicitando meus dados de login. O link redirecionava para um site falso.',
-                    'tipo' => 'phishing',
-                    'url_suspeita' => 'https://banco-falso.example.com',
-                    'status' => 'pendente',
-                    'prioridade' => 'alta',
-                    'localizacao' => 'São Paulo, Brasil',
-                    'data_incidente' => now()->toDateString(),
-                ]
-            );
-
-            Denuncia::updateOrCreate(
-                ['titulo' => 'Site com malware suspeito'],
-                [
-                    'user_id' => $user->id,
-                    'descricao' => 'Ao acessar o site, um aplicativo foi instalado automaticamente.',
-                    'tipo' => 'malware',
-                    'status' => 'pendente',
-                    'prioridade' => 'alta',
-                    'localizacao' => 'Rio de Janeiro, Brasil',
-                    'data_incidente' => now()->toDateString(),
-                ]
-            );
-        }
+     
     }
 }
