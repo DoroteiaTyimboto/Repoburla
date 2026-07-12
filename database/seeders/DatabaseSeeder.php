@@ -93,18 +93,7 @@ class DatabaseSeeder extends Seeder
                 'is_published' => true,
                 'ordem' => 4,
             ],
-            [
-                'titulo' => 'Mini Curso: Proteção de Dados Pessoais',
-                'descricao' => 'Conceitos essenciais sobre proteção de dados pessoais, consentimento, boas práticas e direitos do titular.',
-                'conteudo' => "Módulos:\n- O que são dados pessoais e sensíveis\n- Bases legais e consentimento\n- Boas práticas para proteger dados pessoais\n- Direitos do titular e como exercê-los\n\nMaterial complementar:\n- Checklist de proteção de dados\n- Links para leitura:\nhttps://www.cnpd.gov.ao/ (exemplo)\n- Exercício prático: revisar configurações de privacidade.",
-                'nivel' => 'iniciante',
-                'duracao_minutos' => 60,
-                'categoria' => 'Proteção de Dados',
-                'imagem_capa' => 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Privacy_shield_logo.png',
-                'tags' => ['protecaodados', 'privacidade', 'lgpd'],
-                'is_published' => true,
-                'ordem' => 0,
-            ],
+         
         ];
 
         foreach($cursos as $curso) {
