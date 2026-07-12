@@ -42,6 +42,11 @@
                     <label class="form-label">Categoria</label>
                     <input type="text" name="categoria" class="form-control" value="{{ old('categoria') }}">
                 </div>
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">URL da Imagem de Capa</label>
+                    <input type="url" name="imagem_capa" class="form-control" value="{{ old('imagem_capa') }}" placeholder="https://example.com/imagem.jpg">
+                    <small class="text-muted">Informe uma URL pública para a imagem de capa (opcional).</small>
+                </div>
             </div>
 
             <div class="form-check mb-3">
