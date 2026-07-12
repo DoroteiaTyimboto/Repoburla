@@ -171,9 +171,16 @@
 
                         <div class="mb-3">
                             <label class="form-label">Seu Progresso</label>
+                            <?php $progresso = $userProgresso ?? 0; ?>
                             <div class="progress" style="height: 25px;">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
+                                <div id="progressBar" class="progress-bar bg-success" role="progressbar" style="width: <?php echo e($progresso); ?>%" aria-valuenow="<?php echo e($progresso); ?>" aria-valuemin="0" aria-valuemax="100"><?php echo e($progresso); ?>%</div>
                             </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-3">
+                            <button id="increaseBtn" class="btn btn-outline-primary">Aumentar progresso +10%</button>
+                            <button id="decreaseBtn" class="btn btn-outline-secondary">Diminuir progresso -10%</button>
+                            <button id="completeBtn" class="btn btn-success">Marcar como concluído</button>
                         </div>
 
                         <form action="<?php echo e(route('cursos.unenroll', $curso)); ?>" method="POST">
@@ -227,6 +234,64 @@
         </div>
     </div>
 </div>
+<script>
+    (function(){
+        const progressBar = document.getElementById('progressBar');
+        if(!progressBar) return;
+
+        const url = '<?php echo e(route('cursos.progress', $curso)); ?>';
+        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        function setProgress(value){
+            value = Math.max(0, Math.min(100, parseInt(value)));
+            progressBar.style.width = value + '%';
+            progressBar.setAttribute('aria-valuenow', value);
+            progressBar.textContent = value + '%';
+        }
+
+        async function sendProgress(value){
+            try{
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token,
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ progresso: value })
+                });
+                const data = await res.json();
+                if(data.success){
+                    setProgress(value);
+                } else {
+                    alert('Não foi possível atualizar o progresso.');
+                }
+            } catch(e) {
+                console.error(e);
+                alert('Erro ao atualizar progresso.');
+            }
+        }
+
+        document.getElementById('increaseBtn').addEventListener('click', function(e){
+            e.preventDefault();
+            const cur = parseInt(progressBar.getAttribute('aria-valuenow') || 0);
+            const next = Math.min(100, cur + 10);
+            sendProgress(next);
+        });
+
+        document.getElementById('decreaseBtn').addEventListener('click', function(e){
+            e.preventDefault();
+            const cur = parseInt(progressBar.getAttribute('aria-valuenow') || 0);
+            const next = Math.max(0, cur - 10);
+            sendProgress(next);
+        });
+
+        document.getElementById('completeBtn').addEventListener('click', function(e){
+            e.preventDefault();
+            sendProgress(100);
+        });
+    })();
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\HP\Desktop\DR\Repoburla\resources\views/cursos/show.blade.php ENDPATH**/ ?>

@@ -51,8 +51,14 @@ class CursoController extends Controller
         if(!$curso->is_published && (!Auth::check() || !Auth::user()->isModerator())) {
             abort(404);
         }
-
         $isInscrito = Auth::check() ? Auth::user()->cursosInscritos->contains($curso) : false;
+        $userProgresso = null;
+        if(Auth::check() && $isInscrito) {
+            $relation = Auth::user()->cursosInscritos()->where('curso_id', $curso->id)->first();
+            if($relation && isset($relation->pivot)) {
+                $userProgresso = (int) $relation->pivot->progresso;
+            }
+        }
         $comentarios = $curso->comentarios()->principal()->with('user')->paginate(10);
         $avaliacoes = $curso->avaliacoes()->get();
         $mediaAvaliacoes = $avaliacoes->avg('classificacao');
@@ -60,6 +66,7 @@ class CursoController extends Controller
         return view('cursos.show', [
             'curso' => $curso,
             'isInscrito' => $isInscrito,
+            'userProgresso' => $userProgresso,
             'comentarios' => $comentarios,
             'avaliacoes' => $avaliacoes,
             'mediaAvaliacoes' => round($mediaAvaliacoes, 1),
