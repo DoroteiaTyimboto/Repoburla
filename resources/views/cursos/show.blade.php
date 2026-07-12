@@ -9,15 +9,9 @@
             <h1 class="page-title">{{ $curso->titulo }}</h1>
 
             <div class="card mb-4">
-                @if($curso->imagem_capa)
-                    <div style="height:300px; overflow:hidden; border-top-left-radius: 18px; border-top-right-radius: 18px;">
-                        <img src="{{ $curso->imagem_capa }}" alt="{{ $curso->titulo }}" style="width:100%; height:100%; object-fit:cover; display:block;">
-                    </div>
-                @else
-                    <div style="height: 300px; background: linear-gradient(135deg, #6c757d 0%, #343a40 100%); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="bi bi-shield-lock" style="font-size: 5rem;"></i>
-                    </div>
-                @endif
+                <div style="height: 300px; background: linear-gradient(135deg, #6c757d 0%, #343a40 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                    <i class="bi bi-shield-lock" style="font-size: 5rem;"></i>
+                </div>
 
                 <div class="card-body">
                     <h5 class="card-title">Sobre o Curso</h5>

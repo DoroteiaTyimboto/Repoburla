@@ -51,14 +51,8 @@ class CursoController extends Controller
         if(!$curso->is_published && (!Auth::check() || !Auth::user()->isModerator())) {
             abort(404);
         }
+
         $isInscrito = Auth::check() ? Auth::user()->cursosInscritos->contains($curso) : false;
-        $userProgresso = null;
-        if(Auth::check() && $isInscrito) {
-            $relation = Auth::user()->cursosInscritos()->where('curso_id', $curso->id)->first();
-            if($relation && isset($relation->pivot)) {
-                $userProgresso = (int) $relation->pivot->progresso;
-            }
-        }
         $comentarios = $curso->comentarios()->principal()->with('user')->paginate(10);
         $avaliacoes = $curso->avaliacoes()->get();
         $mediaAvaliacoes = $avaliacoes->avg('classificacao');
@@ -66,7 +60,6 @@ class CursoController extends Controller
         return view('cursos.show', [
             'curso' => $curso,
             'isInscrito' => $isInscrito,
-            'userProgresso' => $userProgresso,
             'comentarios' => $comentarios,
             'avaliacoes' => $avaliacoes,
             'mediaAvaliacoes' => round($mediaAvaliacoes, 1),
@@ -204,7 +197,6 @@ class CursoController extends Controller
             'nivel' => 'required|in:iniciante,intermediario,avancado',
             'duracao_minutos' => 'nullable|integer|min:1',
             'categoria' => 'nullable|string|max:100',
-            'imagem_capa' => 'nullable|url',
             'tags' => 'nullable|array',
             'is_published' => 'nullable|boolean',
             'ordem' => 'nullable|integer',
@@ -217,7 +209,6 @@ class CursoController extends Controller
             'nivel' => $validated['nivel'],
             'duracao_minutos' => $validated['duracao_minutos'] ?? 0,
             'categoria' => $validated['categoria'] ?? null,
-            'imagem_capa' => $validated['imagem_capa'] ?? null,
             'tags' => $validated['tags'] ?? [],
             'is_published' => $validated['is_published'] ?? false,
             'ordem' => $validated['ordem'] ?? 0,
@@ -248,7 +239,6 @@ class CursoController extends Controller
             'nivel' => 'required|in:iniciante,intermediario,avancado',
             'duracao_minutos' => 'nullable|integer|min:1',
             'categoria' => 'nullable|string|max:100',
-            'imagem_capa' => 'nullable|url',
             'tags' => 'nullable|array',
             'is_published' => 'nullable|boolean',
             'ordem' => 'nullable|integer',
@@ -268,3 +258,4 @@ class CursoController extends Controller
         return redirect()->route('admin.cursos')->with('success', 'Curso deletado com sucesso!');
     }
 }
+
